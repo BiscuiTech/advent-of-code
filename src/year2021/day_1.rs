@@ -1,6 +1,6 @@
 pub fn main() {
     // PART 1
-    let split_string = crate::utils::read_file("src/data/day1.txt");
+    let split_string = crate::utils::read_file("src/year2021/data/day_1.txt");
     // convert string to int
     let readings: Vec<i32> = split_string
         .iter()

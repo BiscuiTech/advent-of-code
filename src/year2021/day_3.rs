@@ -7,7 +7,7 @@ struct BinaryCounter {
 const WIDTH: usize = 12;
 
 fn part1() {
-    let split_string = crate::utils::read_file("src/data/day3.txt");
+    let split_string = crate::utils::read_file("src/year2021/data/day_3.txt");
     // collect the position of the string into a vector
     let mut matrix = vec![String::new(); split_string[0].chars().count()];
     // fill the matrix with the string
@@ -73,7 +73,7 @@ fn get_life_ratings(nums: Vec<u32>, width: usize) -> (u32, u32) {
 
 pub fn main() {
     part1();
-    let nums = fs::read_to_string("src/data/day3.txt")
+    let nums = fs::read_to_string("src/year2021/data/day_3.txt")
         .unwrap()
         .lines()
         .map(|l| u32::from_str_radix(l, 2).unwrap())

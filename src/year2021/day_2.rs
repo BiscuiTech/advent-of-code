@@ -1,7 +1,7 @@
 pub fn main() {
     // PART 1
     // read file from disk
-    let split_string = crate::utils::read_file("src/data/day2.txt");
+    let split_string = crate::utils::read_file("src/year2021/data/day_2.txt");
 
     // Vector of strings, each string is composed of a string and a int
     let mut instructions: Vec<(String, i32)> = Vec::new();
