@@ -9,27 +9,8 @@ pub fn main() {
     println!("Part 2: {:?}", part_2(input));
 }
 
-fn part_1(input: &Vec<Vec<u32>>) -> (u32, u32) {
-    // sum each inner vec
-    let mut result = Vec::new();
-    for vec in input {
-        let mut sum = 0;
-        for num in vec {
-            sum += num;
-        }
-        result.push(sum);
-    }
-    // get index of max sum
-    let mut max = 0;
-    let mut max_index = 0;
-    for (index, sum) in result.iter().enumerate() {
-        if *sum > max {
-            max = *sum;
-            max_index = index + 1;
-        }
-    }
-    // return max sum vec
-    (max, max_index as u32)
+fn part_1(input: &[Vec<u32>]) -> u32 {
+    input.iter().map(|vec| vec.iter().sum()).max().unwrap()
 }
 
 fn part_2(input: &[Vec<u32>]) -> u32 {
@@ -40,19 +21,14 @@ fn part_2(input: &[Vec<u32>]) -> u32 {
 
 fn read_file(path: &str) -> Vec<Vec<u32>> {
     let contents = fs::read_to_string(path).expect("Error reading file");
-    // seperate empty lines into a new vector
-    let mut elves: Vec<Vec<u32>> = vec![];
-    let raw: Vec<&str> = contents.split("\n\n").collect();
-    for group in raw {
-        // let mut group_vec: Vec<u32> = vec![];
-        elves.push(
-            group
-                .lines()
-                .map(|s| s.to_string().parse::<u32>().unwrap())
-                .collect(),
-        );
-    }
-    elves
+    contents
+        .split("\n\n")
+        .map(|x| {
+            x.lines()
+                .map(|x| x.parse::<u32>().unwrap())
+                .collect::<Vec<u32>>()
+        })
+        .collect()
 }
 
 #[cfg(test)]
@@ -63,7 +39,7 @@ mod tests {
     #[test]
     fn test_part_1() {
         let input = read_file(TEST_INPUT);
-        assert_eq!(part_1(&input), (24000, 4));
+        assert_eq!(part_1(&input), (24000));
     }
 
     #[test]
