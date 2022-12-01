@@ -38,3 +38,64 @@ pub fn delete_last_action() {
     let path = Path::new("last_action.txt");
     fs::remove_file(path).unwrap();
 }
+
+pub fn setup() {
+    // create this years's folder if not already present
+    let year_path = Path::new("src/year2022");
+    match year_path.try_exists() {
+        Ok(true) => println!("Year 2022 folder already present"),
+        Ok(false) => {
+            println!("Creating year 2022 folder");
+            fs::create_dir(year_path).unwrap();
+        }
+        Err(e) => panic!("Error creating year 2022 folder: {}", e),
+    }
+    // create this years's day folders if not already present
+    for day in 1..=25 {
+        let path = &format!("src/year2022/day_{}.rs", day);
+        let day_path = Path::new(path);
+        match day_path.try_exists() {
+            Ok(true) => println!("day_{}.rs file already present", day),
+            Ok(false) => {
+                println!("Creating day_{}.rs file", day);
+                // populate file with template data
+                let mut file = File::create(day_path).unwrap();
+                file.write_all(
+                    format!(
+                        r#"use std::io::Result;
+
+pub fn main() -> Result<()> {{
+    let input = super::super::utils::read_file("src/year2022/day_{day_number}/input.txt");
+    println!("input: {{:?}}", input);
+    Ok(())
+}}
+
+
+#[cfg(test)]
+mod tests {{
+    use super::*;
+    const TEST_INPUT: &str = "src/year2022/data/day_{day_number}_test.txt";
+
+    #[test]
+    fn test_part_1() {{
+        let input = read_file(TEST_INPUT);
+        // assert_eq!(part_1(&input), (... ));
+    }}
+
+    #[test]
+    fn test_part_2() {{
+        let input = read_file(TEST_INPUT);
+        // assert_eq!(part_2(&input), ( ... ))
+    }}
+}}
+"#,
+                        day_number = day
+                    )
+                    .as_bytes(),
+                )
+                .unwrap();
+            }
+            Err(e) => panic!("Error creating day_{}.rs file: {}", day, e),
+        }
+    }
+}

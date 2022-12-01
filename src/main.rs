@@ -2,13 +2,20 @@
 
 use console::Term;
 use dialoguer::{theme::ColorfulTheme, Select};
-use utils::read_last_action;
 
 mod utils;
 mod year2021;
 mod year2022;
 
 fn main() -> std::io::Result<()> {
+    // read arguments
+    let args: Vec<String> = std::env::args().collect();
+    println!("{:?}", args);
+    // if argument 'setup' is passed, run setup
+    if args.contains(&"--setup".to_owned()) {
+        utils::setup();
+        return Ok(());
+    }
     let (year, day) = date_selection();
     // save to last_action.txt
     utils::save_last_action(year, day);
@@ -50,12 +57,14 @@ fn date_selection() -> (u16, u32) {
     let is_last_action_file_present = utils::is_last_action_file_present();
     match is_last_action_file_present {
         true => {
+            println!("Last action file present");
             let (year, day) = utils::read_last_action();
             let year = year_selection(year);
             let day = day_selection(day);
             (year, day)
         }
         false => {
+            println!("Last action file not present");
             let year = year_selection(2022);
             let day = day_selection(1);
             (year, day)

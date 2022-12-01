@@ -4,11 +4,12 @@ const FILE_PATH: &str = "src/year2022/data/day_1.txt";
 
 pub fn main() {
     let input = read_file(FILE_PATH);
-    println!("input: {:?}", part_1(input.clone()));
-    println!("input: {:?}", part_2(input));
+    println!("Part 1: {:?}", part_1(&input));
+    let input: &[Vec<u32>] = &input;
+    println!("Part 2: {:?}", part_2(input));
 }
 
-fn part_1(input: Vec<Vec<u32>>) -> (u32, u32) {
+fn part_1(input: &Vec<Vec<u32>>) -> (u32, u32) {
     // sum each inner vec
     let mut result = Vec::new();
     for vec in input {
@@ -31,7 +32,7 @@ fn part_1(input: Vec<Vec<u32>>) -> (u32, u32) {
     (max, max_index as u32)
 }
 
-fn part_2(input: Vec<Vec<u32>>) -> u32 {
+fn part_2(input: &[Vec<u32>]) -> u32 {
     let mut sums: Vec<u32> = input.iter().map(|x| x.iter().sum()).collect();
     sums.sort();
     sums.as_slice()[sums.len() - 3..].to_vec().iter().sum()
@@ -62,12 +63,12 @@ mod tests {
     #[test]
     fn test_part_1() {
         let input = read_file(TEST_INPUT);
-        assert_eq!(part_1(input), (24000, 4));
+        assert_eq!(part_1(&input), (24000, 4));
     }
 
     #[test]
     fn test_part_2() {
         let input = read_file(TEST_INPUT);
-        assert_eq!(part_2(input), (45000))
+        assert_eq!(part_2(&input), (45000))
     }
 }
