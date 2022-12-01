@@ -56,9 +56,8 @@ fn date_selection() -> (u16, u32) {
             (year, day)
         }
         false => {
-            let default_date = read_last_action();
-            let year = year_selection(default_date.0);
-            let day = day_selection(default_date.1);
+            let year = year_selection(2022);
+            let day = day_selection(1);
             (year, day)
         }
     }
