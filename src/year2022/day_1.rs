@@ -1,3 +1,5 @@
 pub fn main() {
-    println!("Hello, world!");
+    // read input
+    let input = include_str!("src/year2022/data/day_1.txt");
+    println!(input);
 }
