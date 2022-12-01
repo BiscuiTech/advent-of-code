@@ -1,5 +1,7 @@
+use crate::utils::read_file;
+
 pub fn main() {
-    // read input
-    let input = include_str!("src/year2022/data/day_1.txt");
-    println!(input);
+    // read input src/year2022/data/day_1.txt
+    let input = read_file("src/year2022/data/day_1.txt");
+    println!("input: {:?}", input);
 }

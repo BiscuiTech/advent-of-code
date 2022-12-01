@@ -5,16 +5,17 @@ use std::{
 };
 
 pub fn read_file(path: &str) -> Vec<String> {
-    let contents = fs::read_to_string(path).unwrap();
-    contents
-        .split_ascii_whitespace()
-        .map(|x| x.to_string())
-        .collect()
+    let contents = fs::read_to_string(path);
+    match contents {
+        Ok(contents) => contents.lines().map(|s| s.to_string()).collect(),
+        Err(e) => panic!("Error reading file: {}", e),
+    }
 }
 
 pub fn is_last_action_file_present() -> bool {
     let path = Path::new("last_action.txt");
-    path.exists()
+    path.try_exists()
+        .expect("Can't check existence of file does_not_exist.txt")
 }
 
 pub fn save_last_action(year: u16, day: u32) {
