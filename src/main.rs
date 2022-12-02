@@ -23,9 +23,30 @@ fn main() -> std::io::Result<()> {
     match year {
         2022 => match day {
             1 => year2022::day_1::main(),
-            // 1 => year2022::day_2::main(),
-            // 2 => year2022::day_3::main(),
-            // 3 => year2022::day_4::main(),
+            2 => year2022::day_2::main(),
+            // 3 => year2022::day_3::main(),
+            // 4 => year2022::day_4::main(),
+            // 5 => year2022::day_5::main(),
+            // 6 => year2022::day_6::main(),
+            // 7 => year2022::day_7::main(),
+            // 8 => year2022::day_8::main(),
+            // 9 => year2022::day_9::main(),
+            // 10 => year2022::day_10::main(),
+            // 11 => year2022::day_11::main(),
+            // 12 => year2022::day_12::main(),
+            // 13 => year2022::day_13::main(),
+            // 14 => year2022::day_14::main(),
+            // 15 => year2022::day_15::main(),
+            // 16 => year2022::day_16::main(),
+            // 17 => year2022::day_17::main(),
+            // 18 => year2022::day_18::main(),
+            // 19 => year2022::day_19::main(),
+            // 20 => year2022::day_20::main(),
+            // 21 => year2022::day_21::main(),
+            // 22 => year2022::day_22::main(),
+            // 23 => year2022::day_23::main(),
+            // 24 => year2022::day_24::main(),
+            // 25 => year2022::day_25::main(),
             _ => println!("User did not select a day"),
         },
         2021 => match day {
@@ -41,24 +62,13 @@ fn main() -> std::io::Result<()> {
     Ok(())
 }
 
-// fn last_action_selection() -> bool {
-//     let term = Term::stdout();
-//     let theme = ColorfulTheme::default();
-//     let selection = Confirm::with_theme(&theme)
-//         .with_prompt("Do you want to use the last action?")
-//         .default(true)
-//         .interact_on_opt(&term)
-//         .unwrap()
-//         .unwrap();
-//     selection
-// }
-
 fn date_selection() -> (u16, u32) {
     let is_last_action_file_present = utils::is_last_action_file_present();
     match is_last_action_file_present {
         true => {
             println!("Last action file present");
             let (year, day) = utils::read_last_action();
+            println!("Last action: {} {}", year, day);
             let year = year_selection(year);
             let day = day_selection(day);
             (year, day)
@@ -77,7 +87,12 @@ fn year_selection(default_year: u16) -> u16 {
     // find the index of the default year
     let selection = Select::with_theme(&ColorfulTheme::default())
         .items(&AVAILABLE_YEARS)
-        .default(default_year as usize)
+        .default(
+            AVAILABLE_YEARS
+                .iter()
+                .position(|&r| r == default_year)
+                .unwrap(),
+        )
         .interact_on_opt(&Term::stderr())
         .unwrap()
         .unwrap();
@@ -93,7 +108,7 @@ fn day_selection(default_day: u32) -> u32 {
     }
     let selection = Select::with_theme(&ColorfulTheme::default())
         .items(&days)
-        .default(default_day as usize)
+        .default((default_day - 1) as usize)
         .interact_on_opt(&Term::stderr())
         .unwrap()
         .unwrap();

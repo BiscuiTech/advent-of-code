@@ -64,12 +64,10 @@ pub fn setup() {
                     format!(
                         r#"use std::io::Result;
 
-pub fn main() -> Result<()> {{
-    let input = super::super::utils::read_file("src/year2022/day_{day_number}/input.txt");
+pub fn main() {{
+    let input = super::super::utils::read_file("src/year2022/data/day_{day_number}.txt");
     println!("input: {{:?}}", input);
-    Ok(())
 }}
-
 
 #[cfg(test)]
 mod tests {{
@@ -78,13 +76,16 @@ mod tests {{
 
     #[test]
     fn test_part_1() {{
-        let input = read_file(TEST_INPUT);
+        todo!()
+        // let input = read_file(TEST_INPUT);
         // assert_eq!(part_1(&input), (... ));
     }}
 
     #[test]
     fn test_part_2() {{
-        let input = read_file(TEST_INPUT);
+        todo!()
+
+        // let input = read_file(TEST_INPUT);
         // assert_eq!(part_2(&input), ( ... ))
     }}
 }}
