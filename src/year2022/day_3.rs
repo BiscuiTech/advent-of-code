@@ -6,6 +6,18 @@ pub fn main() {
     println!("Part 2: {:?}", part_2(path));
 }
 
+fn get_value(v: u8) -> usize {
+    match v {
+        b'a'..=b'z' => v as usize - b'a' as usize + 1,
+        b'A'..=b'Z' => v as usize - b'A' as usize + 27,
+        _ => unreachable!(),
+    }
+}
+
+fn compare(left: &[u8], right: &[u8]) -> Vec<u8> {
+    left.iter().copied().filter(|c| right.contains(c)).collect()
+}
+
 fn part_1(path: &str) -> usize {
     let input = crate::utils::read_file(path);
     // turn the input into a Vec<(Vec<u8>, Vec<u8>)>
@@ -21,18 +33,6 @@ fn part_1(path: &str) -> usize {
         })
         .map(|x| get_value(x[0]))
         .sum()
-}
-
-fn get_value(v: u8) -> usize {
-    match v {
-        b'a'..=b'z' => v as usize - b'a' as usize + 1,
-        b'A'..=b'Z' => v as usize - b'A' as usize + 27,
-        _ => unreachable!(),
-    }
-}
-
-fn compare(left: &[u8], right: &[u8]) -> Vec<u8> {
-    left.iter().copied().filter(|c| right.contains(c)).collect()
 }
 
 fn part_2(path: &str) -> usize {
