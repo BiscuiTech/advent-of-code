@@ -1,5 +1,4 @@
 #![feature(drain_filter)]
-
 use console::Term;
 use dialoguer::{theme::ColorfulTheme, Select};
 
@@ -24,7 +23,7 @@ fn main() -> std::io::Result<()> {
         2022 => match day {
             1 => year2022::day_1::main(),
             2 => year2022::day_2::main(),
-            // 3 => year2022::day_3::main(),
+            3 => year2022::day_3::main(),
             // 4 => year2022::day_4::main(),
             // 5 => year2022::day_5::main(),
             // 6 => year2022::day_6::main(),
