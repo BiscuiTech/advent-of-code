@@ -20,7 +20,7 @@ fn compare(left: &[u8], right: &[u8]) -> Vec<u8> {
 
 fn part_1(path: &str) -> usize {
     let input = crate::utils::read_file(path);
-    // turn the input into a Vec<(Vec<u8>, Vec<u8>)>
+    // turn the input into a Vec<&[u8]>
     let input = input.iter().map(|x| x.as_bytes()).collect::<Vec<_>>();
     input
         .iter()
@@ -37,7 +37,7 @@ fn part_1(path: &str) -> usize {
 
 fn part_2(path: &str) -> usize {
     let input = crate::utils::read_file(path);
-    // turn the input into a Vec<(Vec<u8>, Vec<u8>)>
+    // turn the input into a Vec<&[u8]>
     let input = input.iter().map(|x| x.as_bytes()).collect::<Vec<_>>();
     input
         .iter()

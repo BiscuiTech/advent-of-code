@@ -1,14 +1,14 @@
 pub fn main() {
     let input = crate::utils::read_file("src/year2022/data/day_4.txt");
-    println!("Part 1: {:?}", part_1(input));
-    println!("Part 2: {:?}", part_2(input));
+    println!("Part 1: {:?}", part_1(&input));
+    println!("Part 2: {:?}", part_2(&input));
 }
 
-fn part_1(input: &str) {
+fn part_1(input: &Vec<String>) {
     todo!()
 }
 
-fn part_2(input: &str) {
+fn part_2(input: &Vec<String>) {
     todo!()
 }
 
