@@ -62,11 +62,19 @@ pub fn setup() {
                 let mut file = File::create(day_path).unwrap();
                 file.write_all(
                     format!(
-                        r#"use std::io::Result;
-
+                        r#"
 pub fn main() {{
-    let input = super::super::utils::read_file("src/year2022/data/day_{day_number}.txt");
-    println!("input: {{:?}}", input);
+    let input = crate::utils::read_file("src/year2022/data/day_{day_number}.txt");
+    println!("Part 1: {{:?}}", part_1(input));
+    println!("Part 2: {{:?}}", part_2(input));
+}}
+
+fn part_1(input: &str) {{
+    todo!()
+}}
+
+fn part_2(input: &str) {{
+    todo!()
 }}
 
 #[cfg(test)]
