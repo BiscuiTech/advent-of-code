@@ -34,11 +34,6 @@ pub fn read_last_action() -> (u16, u32) {
     (year, day)
 }
 
-pub fn delete_last_action() {
-    let path = Path::new("last_action.txt");
-    fs::remove_file(path).unwrap();
-}
-
 pub fn setup() {
     // create this years's folder if not already present
     let year_path = Path::new("src/year2022");
@@ -62,9 +57,9 @@ pub fn setup() {
                 let mut file = File::create(day_path).unwrap();
                 file.write_all(
                     format!(
-                        r#"
+                        r#"use std::fs;
 pub fn main() {{
-    let input = crate::utils::read_file("src/year2022/data/day_{day_number}.txt");
+    let input = fs::read_to_string("src/year2022/data/day_{day_number}.txt").unwrap().as_str();
     println!("Part 1: {{:?}}", part_1(input));
     println!("Part 2: {{:?}}", part_2(input));
 }}

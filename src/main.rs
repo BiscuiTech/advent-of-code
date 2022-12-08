@@ -28,7 +28,7 @@ fn main() -> std::io::Result<()> {
             5 => year2022::day_5::main(),
             6 => year2022::day_6::main(),
             7 => year2022::day_7::main(),
-            // 8 => year2022::day_8::main(),
+            8 => year2022::day_8::main(),
             // 9 => year2022::day_9::main(),
             // 10 => year2022::day_10::main(),
             // 11 => year2022::day_11::main(),

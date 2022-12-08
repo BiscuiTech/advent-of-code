@@ -1,6 +1,6 @@
-
+use std::fs;
 pub fn main() {
-    let input = crate::utils::read_file("src/year2022/data/day_12.txt");
+    let input = fs::read_to_string("src/year2022/data/day_12.txt").unwrap().as_str();
     println!("Part 1: {:?}", part_1(input));
     println!("Part 2: {:?}", part_2(input));
 }
