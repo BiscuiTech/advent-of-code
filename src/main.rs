@@ -1,10 +1,11 @@
-#![feature(drain_filter)]
 use console::Term;
 use dialoguer::{theme::ColorfulTheme, Select};
 
 mod utils;
+mod year2015;
 mod year2021;
 mod year2022;
+mod year2023;
 
 fn main() -> std::io::Result<()> {
     // read arguments
@@ -20,6 +21,9 @@ fn main() -> std::io::Result<()> {
     utils::save_last_action(year, day);
 
     match year {
+        2023 => match day {
+            1 => year2023::day_1::main(),
+        },
         2022 => match day {
             1 => year2022::day_1::main(),
             2 => year2022::day_2::main(),
@@ -53,6 +57,10 @@ fn main() -> std::io::Result<()> {
             2 => year2021::day_2::main(),
             3 => year2021::day_3::main(),
             4 => year2021::day_4::main(),
+            _ => println!("User did not select day"),
+        },
+        2015 => match day {
+            1 => year2015::day_1::main(),
             _ => println!("User did not select day"),
         },
         _ => println!("User did not select a year"),

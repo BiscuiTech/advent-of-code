@@ -36,18 +36,18 @@ pub fn read_last_action() -> (u16, u32) {
 
 pub fn setup() {
     // create this years's folder if not already present
-    let year_path = Path::new("src/year2022");
+    let year_path = Path::new("src/year2023");
     match year_path.try_exists() {
-        Ok(true) => println!("Year 2022 folder already present"),
+        Ok(true) => println!("Year 2023 folder already present"),
         Ok(false) => {
-            println!("Creating year 2022 folder");
+            println!("Creating year 2023 folder");
             fs::create_dir(year_path).unwrap();
         }
-        Err(e) => panic!("Error creating year 2022 folder: {}", e),
+        Err(e) => panic!("Error creating year 2023 folder: {}", e),
     }
     // create this years's day folders if not already present
     for day in 1..=25 {
-        let path = &format!("src/year2022/day_{}.rs", day);
+        let path = &format!("src/year2023/day_{}.rs", day);
         let day_path = Path::new(path);
         match day_path.try_exists() {
             Ok(true) => println!("day_{}.rs file already present", day),
