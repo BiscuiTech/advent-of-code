@@ -1,13 +1,8 @@
 [package]
-name = "advent-of-code"
+name = "day-01"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-dialoguer = "0.10.2"
-console = "0.15.0"
-hashbrown = "0.13.1"
-itertools = "0.10.5"
-nom = "7.1.1"
